@@ -1,0 +1,6 @@
+.DS_Store
+.gitignore
+env/
+*.pytest_cache/
+*.mypy_cache/
+local/

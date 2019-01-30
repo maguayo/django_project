@@ -1,0 +1,3 @@
+[flake8]
+exclude = local/*
+max-line-length = 120
