@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    image: postgres
+
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8990
+    volumes:
+      - .:/django_project
+    ports:
+      - "8990:8990"
+    depends_on:
+      - db
+
+  tests:
+    build: .
+    command: pytest -v
+    volumes:
+      - .:/django_project
+    depends_on:
+      - db
+      - web
+
+  mypy:
+    build: .
+    command: bash scripts/mypy.sh
+    volumes:
+      - .:/django_project
+
+  flake8:
+    build: .
+    command: bash scripts/flake8.sh
+    volumes:
+      - .:/django_project
